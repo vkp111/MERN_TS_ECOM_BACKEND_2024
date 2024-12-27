@@ -68,7 +68,7 @@ export const newCoupon = TryCatch(async (req, res, next) => {
         return next (new ErrorHandler("Please Enter both COupon and Amount", 400))
     
     await Coupon.create ({
-        code: coupon,
+        code,
         amount
     })
 
