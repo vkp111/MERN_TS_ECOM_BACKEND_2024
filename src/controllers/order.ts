@@ -131,7 +131,7 @@ export const newOrder = TryCatch(async (req: Request<{},{}, NewOrderRequestBody>
         order: true, 
         admin: true,
         userId: user,
-        productId: order.orderItems.map(i=>String(i.productId))
+        productId: order.orderItems.map((i)=>String(i.productId))
     })
 
     return res.status(201).json({
