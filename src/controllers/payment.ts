@@ -4,27 +4,6 @@ import { Coupon } from "../models/coupon.js";
 import ErrorHandler from "../utils/utility-class.js";
 
 
-// Payment COntroller - ANYOne
-/* 
-export const createPaymentIntent = TryCatch(async (req, res, next) => {
-
-    const { amount } = req.body
-
-    if (!amount )
-        return next (new ErrorHandler("Please Enter Amount", 400))
-
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: Number(amount) * 100, 
-        currency: "inr",
-    })
-
-        return res.status(201).json({
-            success: true,
-            clientSecret: paymentIntent.client_secret
-        })
-}) */
-
-
 export const createPaymentIntent = TryCatch(async (req, res, next) => {
     const { amount } = req.body;
 
@@ -62,9 +41,9 @@ export const createPaymentIntent = TryCatch(async (req, res, next) => {
 //  Create a new Coupon
 export const newCoupon = TryCatch(async (req, res, next) => {
 
-    const { coupon, amount } = req.body
+    const { code, amount } = req.body
 
-    if (!coupon || !amount )
+    if (!code || !amount )
         return next (new ErrorHandler("Please Enter both COupon and Amount", 400))
     
     await Coupon.create ({
@@ -74,7 +53,7 @@ export const newCoupon = TryCatch(async (req, res, next) => {
 
         return res.status(201).json({
             success: true,
-            message: `Coupon ${coupon} created SUccessfully` 
+            message: `Coupon ${code} created SUccessfully` 
         })
 })
 
